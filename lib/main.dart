@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         // Make sure that this link includes the platform extension with which to save your binary.
         // If you use https://exapmle.com/latest/macos for instance then you need to create your own file using `getDownloadFileLocation`
-        return "https://github.com/raggaboy/test_update/releases/download/$version/sidekick-${Platform.operatingSystem}-$version.$platformExt";
+        return "https://github.com/raggaboy/test_update/releases/download/$version/test_update.exe";
       },
       appName: "Updat Example", // This is used to name the downloaded files.
       getChangelog: (_, __) async {
@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return jsonDecode(data.body)["body"];
       },
       updateChipBuilder: floatingExtendedChipWithSilentDownload,
-      currentVersion: '1.0.2',
+      currentVersion: '1.0.3',
       callback: (status) {},
       child: Scaffold(
         appBar: AppBar(
@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: _incrementCounter,
-          tooltip: 'hui',
+          tooltip: 'go go go',
           child: const Icon(Icons.add),
         ), // This trailing comma makes auto-formatting nicer for build methods.
       ),
