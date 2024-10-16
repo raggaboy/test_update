@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return jsonDecode(data.body)["body"];
       },
       updateChipBuilder: floatingExtendedChipWithSilentDownload,
-      currentVersion: '1.0.3',
+      currentVersion: '1.0.4',
       callback: (status) {},
       child: Scaffold(
         appBar: AppBar(
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text(
-                'Если заработало то ты хорош',
+                'Проверка кто тут победитель',
               ),
               Text(
                 '$_counter',
