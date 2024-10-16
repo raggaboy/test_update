@@ -3,7 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:updat/theme/chips/floating_with_silent_download.dart';
-import 'package:updat/updat_window_manager.dart';
+import 'package:updat/updat.dart';
+
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -19,7 +20,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -48,64 +48,37 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-    return UpdatWindowManager(
-      getLatestVersion: () async {
-        // Github gives us a super useful latest endpoint, and we can use it to get the latest stable release
-        final data = await http.get(Uri.parse(
-          "https://api.github.com/repos/raggaboy/test_update/releases",
-        ));
-
-        // Return the tag name, which is always a semantically versioned string.
-        return jsonDecode(data.body)["tag_name"];
-      },
-      getBinaryUrl: (version) async {
-        // Github also gives us a great way to download the binary for a certain release (as long as we use a consistent naming scheme)
-
-        // Make sure that this link includes the platform extension with which to save your binary.
-        // If you use https://exapmle.com/latest/macos for instance then you need to create your own file using `getDownloadFileLocation`
-        return "https://github.com/raggaboy/test_update/releases/download/$version/test_update.exe";
-      },
-      appName: "Updat Example", // This is used to name the downloaded files.
-      getChangelog: (_, __) async {
-        // That same latest endpoint gives us access to a markdown-flavored release body. Perfect!
-        final data = await http.get(Uri.parse(
-          "https://api.github.com/repos/raggaboy/test_update/releases/latest",
-        ));
-        return jsonDecode(data.body)["body"];
-      },
-      updateChipBuilder: floatingExtendedChipWithSilentDownload,
-      currentVersion: '2.0.0',
-      callback: (status) {},
-      child: Scaffold(
-        appBar: AppBar(
-      
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      
-          title: Text(widget.title),
-        ),
-        body: Center(
-      
-          child: Column(
-      
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'Проверка кто тут победитель version 2',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _incrementCounter,
-          tooltip: 'go gi go',
-          child: const Icon(Icons.add),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+      ),
+      body: Stack(
+        children: [
+          Center(
+            child: Text("hui"),
+          ),
+          UpdatWidget(
+            currentVersion: "1.0.0",
+            getLatestVersion: () async {
+              // Here you should fetch the latest version. It must be semantic versioning for update detection to work properly.
+              return "2.1.0";
+            },
+            getBinaryUrl: (latestVersion) async {
+              // Here you provide the link to the binary the user should download. Make sure it is the correct one for the platform!
+              return "https://github.com/raggaboy/test_update/releases/download/2.1.0/test_update.exe";
+            },
+            // Lastly, enter your app name so we know what to call your files.
+            appName: "test_update",
+          )
+        ],
+      ),
+
+      // floatingActionButton: , // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
