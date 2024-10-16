@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return jsonDecode(data.body)["body"];
       },
       updateChipBuilder: floatingExtendedChipWithSilentDownload,
-      currentVersion: '0.0.2',
+      currentVersion: '1.0.2',
       callback: (status) {},
       child: Scaffold(
         appBar: AppBar(
