@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return jsonDecode(data.body)["body"];
       },
       updateChipBuilder: floatingExtendedChipWithSilentDownload,
-      currentVersion: '1.0.4',
+      currentVersion: '2.0.0',
       callback: (status) {},
       child: Scaffold(
         appBar: AppBar(
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text(
-                'Проверка кто тут победитель',
+                'Проверка кто тут победитель version 2',
               ),
               Text(
                 '$_counter',
@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: _incrementCounter,
-          tooltip: 'go go go',
+          tooltip: 'go gi go',
           child: const Icon(Icons.add),
         ), // This trailing comma makes auto-formatting nicer for build methods.
       ),
