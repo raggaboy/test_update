@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       getLatestVersion: () async {
         // Github gives us a super useful latest endpoint, and we can use it to get the latest stable release
         final data = await http.get(Uri.parse(
-          "https://api.github.com/repos/fluttertools/sidekick/releases/latest",
+          "https://api.github.com/repos/raggaboy/test_update/releases",
         ));
 
         // Return the tag name, which is always a semantically versioned string.
@@ -64,13 +64,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
         // Make sure that this link includes the platform extension with which to save your binary.
         // If you use https://exapmle.com/latest/macos for instance then you need to create your own file using `getDownloadFileLocation`
-        return "https://github.com/fluttertools/sidekick/releases/download/$version/sidekick-${Platform.operatingSystem}-$version.$platformExt";
+        return "https://github.com/raggaboy/test_update/releases/download/$version/sidekick-${Platform.operatingSystem}-$version.$platformExt";
       },
       appName: "Updat Example", // This is used to name the downloaded files.
       getChangelog: (_, __) async {
         // That same latest endpoint gives us access to a markdown-flavored release body. Perfect!
         final data = await http.get(Uri.parse(
-          "https://api.github.com/repos/fluttertools/sidekick/releases/latest",
+          "https://api.github.com/repos/raggaboy/test_update/releases/latest",
         ));
         return jsonDecode(data.body)["body"];
       },
